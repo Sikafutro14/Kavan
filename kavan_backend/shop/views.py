@@ -1,23 +1,23 @@
 from rest_framework import generics, permissions
-from .models import Product, Category, Order, OrderItem, Cart, CartItem
-from .serializers import ProductSerializer, CategorySerializer, OrderSerializer, OrderItemSerializer, CartSerializer, CartItemSerializer
-
 from django.contrib.auth.models import User
-from .serializers import UserSerializer
-
+from .models import Product, Category, Order, OrderItem, Cart, CartItem
+from .serializers import ProductSerializer, CategorySerializer, OrderSerializer, OrderItemSerializer, CartSerializer, CartItemSerializer, UserSerializer  # <-- Add UserSerializer import
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Product, Category
 
-
+# Add this view function to handle the home page
 def shop_home(request):
     products = Product.objects.all()
     categories = Category.objects.all()
     return render(request, 'shop/shop_home.html', {'products': products, 'categories': categories})
-def index(request):
-    return render(request, 'index.html')
 
 
-# User List & Detail View
+# Your existing views
+class UserListView(generics.ListCreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAdminUser]  # Only admins can view or create users
+# User Views
 class UserListView(generics.ListCreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -50,7 +50,6 @@ class ProductDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ProductSerializer
     permission_classes = [permissions.AllowAny]
 
-# Order Views
 class OrderListView(generics.ListCreateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
@@ -61,7 +60,7 @@ class OrderDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = OrderSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-# Order Item Views
+    # Order Item Views
 class OrderItemListView(generics.ListCreateAPIView):
     queryset = OrderItem.objects.all()
     serializer_class = OrderItemSerializer
@@ -93,3 +92,4 @@ class CartItemDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = CartItem.objects.all()
     serializer_class = CartItemSerializer
     permission_classes = [permissions.IsAuthenticated]
+

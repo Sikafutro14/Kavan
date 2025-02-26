@@ -18,11 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from .views import shop_home  # Ensure the home view is imported
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),  # If you have an API app
     path('shop/', include('shop.urls')),  # If you have the shop app
+    path('', shop_home, name='home'),  # Root URL pattern
 
     # Add more URL patterns here as needed
 ]
