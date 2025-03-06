@@ -6,11 +6,25 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  private baseUrl = 'http://127.0.0.1:8000/api';  // Ensure this matches Django
+  private BASE_URL = 'http://127.0.0.1:8000/api/';
 
   constructor(private http: HttpClient) {}
 
-  getUsers(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/users/`);
+  // Categories
+  getCategories(): Observable<any> {
+    return this.http.get(`${this.BASE_URL}categories/`);
+  }
+
+  getCategory(id: number): Observable<any> {
+    return this.http.get(`${this.BASE_URL}categories/${id}/`);
+  }
+
+  // Products
+  getProducts(): Observable<any> {
+    return this.http.get(`${this.BASE_URL}products/`);
+  }
+
+  getProduct(id: number): Observable<any> {
+    return this.http.get(`${this.BASE_URL}products/${id}/`);
   }
 }

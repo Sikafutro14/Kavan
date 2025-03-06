@@ -12,8 +12,14 @@ export class ProductsComponent implements OnInit {
   constructor(private apiService: ApiService) {}
 
   ngOnInit() {
-    this.apiService.getProducts().subscribe((data) => {
-      this.products = data;
-    });
+    this.apiService.getProducts().subscribe(
+      (data) => {
+        console.log('Products fetched:', data);
+        this.products = data;
+      },
+      (error) => {
+        console.error('Error fetching products:', error);
+      }
+    );
   }
 }

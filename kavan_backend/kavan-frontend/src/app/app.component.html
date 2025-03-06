@@ -181,22 +181,48 @@
       </svg>
     </div>
     <div class="right-side">
-      <h1>Welcome to Our Platform</h1>
-      <p>with Kavan you are covered.</p>
+      <h2>Welcome to Kavan</h2>
+      <p>one stop shop for all your needs.</p>
       <div class="divider"></div>
-      <div class="pill-group">
-        <!-- Pill buttons or navigation elements -->
-        <a href="#" class="pill">Feature 1</a>
-        <a href="#" class="pill">Feature 2</a>
-        <a href="#" class="pill">Feature 3</a>
-        
-      </div>
-      <nav>
-        <a routerLink="/products">Products</a> |
-        <a routerLink="/users">Users</a>
+     
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+          <a class="navbar-brand" href="#">Kavan</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/shop">Shop</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/cart">Cart</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" routerLink="/login">Login</a>
+              </li>
+            </ul>
+          </div>
+        </div>
       </nav>
       
-      <router-outlet></router-outlet>
+      <!-- Main Content -->
+      <div class="container mt-4">
+        <router-outlet></router-outlet>
+      </div>
+      
+        <nav>
+          <a routerLink="/products">Products</a> |
+          <a routerLink="/users">Users</a>
+        </nav>
+        
+        <router-outlet></router-outlet>
+        
+     
       
     </div>
   </div>

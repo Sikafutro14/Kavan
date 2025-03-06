@@ -20,6 +20,6 @@ export class UsersComponent implements OnInit {
       (error) => {
         console.error("Error fetching users:", error);
       }
-    );cd 
+    );
   }
 }
